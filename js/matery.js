@@ -120,7 +120,11 @@ $(function () {
 
     /*回到顶部*/
     $('#backTop').click(function () {
-        $('body,html').animate({scrollTop: 0}, 400);
+        id=Math.round(Math.random()*1)+1
+        document.getElementById("backTopAnime"+id).style.display = "inline-block";
+        setTimeout(()=>{$('body,html').animate({scrollTop: 0}, 200)},400);
+        setTimeout(()=>{document.getElementById("backTopAnime"+id).style.display = "none"},800);
+
         return false;
     });
 
