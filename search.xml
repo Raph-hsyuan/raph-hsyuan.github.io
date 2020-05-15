@@ -5,8 +5,8 @@
     
     <entry>
       <title>使用Cerbot为网站申请泛域名证书</title>
-      <link href="/raph-hsyuan.github.io/2020/05/15/shi-yong-cerbot-wei-wang-zhan-shen-qing-fan-yu-ming-zheng-shu/"/>
-      <url>/raph-hsyuan.github.io/2020/05/15/shi-yong-cerbot-wei-wang-zhan-shen-qing-fan-yu-ming-zheng-shu/</url>
+      <link href="/2020/05/15/shi-yong-cerbot-wei-wang-zhan-shen-qing-fan-yu-ming-zheng-shu/"/>
+      <url>/2020/05/15/shi-yong-cerbot-wei-wang-zhan-shen-qing-fan-yu-ming-zheng-shu/</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -32,8 +32,8 @@
     
     <entry>
       <title>Openvpn+ReverseProxy实现远程任意接入</title>
-      <link href="/raph-hsyuan.github.io/2020/05/15/openvpn-reverseproxy-shi-xian-yuan-cheng-ren-yi-jie-ru/"/>
-      <url>/raph-hsyuan.github.io/2020/05/15/openvpn-reverseproxy-shi-xian-yuan-cheng-ren-yi-jie-ru/</url>
+      <link href="/2020/05/15/openvpn-reverseproxy-shi-xian-yuan-cheng-ren-yi-jie-ru/"/>
+      <url>/2020/05/15/openvpn-reverseproxy-shi-xian-yuan-cheng-ren-yi-jie-ru/</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -65,8 +65,8 @@
     
     <entry>
       <title>Openvpn服务器架设记录</title>
-      <link href="/raph-hsyuan.github.io/2020/05/15/openvpn-fu-wu-qi-jia-she-ji-lu/"/>
-      <url>/raph-hsyuan.github.io/2020/05/15/openvpn-fu-wu-qi-jia-she-ji-lu/</url>
+      <link href="/2020/05/15/openvpn-fu-wu-qi-jia-she-ji-lu/"/>
+      <url>/2020/05/15/openvpn-fu-wu-qi-jia-she-ji-lu/</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -94,8 +94,8 @@
     
     <entry>
       <title>Go语言实现反向代理</title>
-      <link href="/raph-hsyuan.github.io/2020/05/15/go-yu-yan-shi-xian-fan-xiang-dai-li/"/>
-      <url>/raph-hsyuan.github.io/2020/05/15/go-yu-yan-shi-xian-fan-xiang-dai-li/</url>
+      <link href="/2020/05/15/go-yu-yan-shi-xian-fan-xiang-dai-li/"/>
+      <url>/2020/05/15/go-yu-yan-shi-xian-fan-xiang-dai-li/</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -123,8 +123,8 @@
     
     <entry>
       <title>理解和管理Docker卷</title>
-      <link href="/raph-hsyuan.github.io/2020/05/15/li-jie-he-guan-li-docker-juan/"/>
-      <url>/raph-hsyuan.github.io/2020/05/15/li-jie-he-guan-li-docker-juan/</url>
+      <link href="/2020/05/15/li-jie-he-guan-li-docker-juan/"/>
+      <url>/2020/05/15/li-jie-he-guan-li-docker-juan/</url>
       
         <content type="html"><![CDATA[<p>传送至原文: <a href="https://www.ionos.com/community/server-cloud-infrastructure/docker/understanding-and-managing-docker-container-volumes/" target="_blank" rel="noopener">Understanding and Managing Docker Container Volumes</a><br>官方文档: <a href="https://docs.docker.com/storage/" target="_blank" rel="noopener">Mange data in Docker</a></p><h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0. 简介"></a>0. 简介</h1><p>学习了解Docker是如何处理存储卷，如何通过命令行/Dockerfile启动一个带有卷的容器，如何实现在容器之间共享卷。</p><h2 id="0-1-Docker-的文件系统"><a href="#0-1-Docker-的文件系统" class="headerlink" title="0.1. Docker 的文件系统"></a>0.1. Docker 的文件系统</h2><p>在学习 Docker 存储卷之前需要对 Docker 文件系统有一定的了解。Docker的镜像是由一个或多个只读层组成的集合。当你从一个镜像启动一个容器时，Docker会在只读层的栈顶添加一个读写层，这就是 Docker 的联合文件系统（Union File System），每当任何一个文件发生了改变，Docker会从只读层中将该文件复制到顶部读写层，这样只读层将会保持不变，所有的变化都体现在顶部读写层。每当一个容器被删除，那么这个顶部的读写曾也会随之丢失，这就意味着在容器启动后所发生的所有变动都会被移除。</p><h2 id="0-2-为什么需要存储卷"><a href="#0-2-为什么需要存储卷" class="headerlink" title="0.2. 为什么需要存储卷"></a>0.2. 为什么需要存储卷</h2><p>存储卷可以在容器被删除后仍然保留数据，同时，存储卷也是一个宿主机和容器之间共享数据的方案。<br>应该在什么时候挂载卷：</p><ul><li>将数据推送至容器</li><li>从容器中拉取数据</li><li>在容器间共享数据</li></ul><p>Docker 卷独立于联合文件系统，是宿主机和容器或者容器之间的共享文件夹。</p><h1 id="1-Docker-存储卷基础"><a href="#1-Docker-存储卷基础" class="headerlink" title="1. Docker 存储卷基础"></a>1. Docker 存储卷基础</h1><p>Docker的存储卷存在于容器之外，保存在宿主机之中。对于容器来说，卷就像一个存储数据的文件夹，它是一个简单的挂载点，将宿主机的文件挂在容器的一个文件夹下。我们有很多方法可以创建和管理Docker卷，每个方法都有其特定的使用场景，优势和劣势。</p><h1 id="2-使用-volume-create-直接创建卷"><a href="#2-使用-volume-create-直接创建卷" class="headerlink" title="2. 使用 volume create 直接创建卷"></a>2. 使用 <code>volume create</code> 直接创建卷</h1><ul><li><strong>优点：简单快捷</strong></li><li><strong>缺点：宿主机上的卷为Docker自动创建，定位文件和使用起来比较麻烦</strong></li></ul><p>v1.9.0后，Docker卷可以使用 docker volume 命令进行创建和管理。</p><h2 id="2-1-使用命令创建一个卷"><a href="#2-1-使用命令创建一个卷" class="headerlink" title="2.1. 使用命令创建一个卷"></a>2.1. 使用命令创建一个卷</h2><p><code>docker volume create</code> 命令会创建一个命名卷，这个名字可以让你更加容易的定位和分配Docker卷给制定容器。<br>使用一些命令可以创建一个命名卷：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker volume create --name <span class="token punctuation">[</span>volume name<span class="token punctuation">]</span></code></pre><h2 id="2-2-启动容器时挂载卷"><a href="#2-2-启动容器时挂载卷" class="headerlink" title="2.2. 启动容器时挂载卷"></a>2.2. 启动容器时挂载卷</h2><p>你可以先用 <code>docker volume create</code>命令创建一个命名卷，并使用以下<code>docker run</code>的参数指定需要挂载的卷名和挂载点路径：</p><pre class=" language-option"><code class="language-option">-v [volume name]:[container directory] </code></pre><h2 id="2-3-列出-检查-移除卷"><a href="#2-3-列出-检查-移除卷" class="headerlink" title="2.3. 列出/检查/移除卷"></a>2.3. 列出/检查/移除卷</h2><p>列出系统上存在的卷，使用命令：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker volume <span class="token function">ls</span></code></pre><p>检查某个卷，使用命令：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker volume inspect <span class="token punctuation">[</span>volume name<span class="token punctuation">]</span></code></pre><p>移除某个卷，使用命令：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker volume <span class="token function">rm</span> <span class="token punctuation">[</span>volume name<span class="token punctuation">]</span></code></pre><p>如果一个卷已经被某个存在的容器所使用，则他不能被删除，你需要先停止并删除相应容器再移除该卷。</p><p>停止删除容器，使用命令：【注】id可以只输入前几位，不存在重复即可</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker stop <span class="token punctuation">[</span>container name or ID<span class="token punctuation">]</span><span class="token function">sudo</span> docker <span class="token function">rm</span> <span class="token punctuation">[</span>container name or ID<span class="token punctuation">]</span></code></pre><h1 id="3-从指定文件夹创建卷"><a href="#3-从指定文件夹创建卷" class="headerlink" title="3. 从指定文件夹创建卷"></a>3. 从指定文件夹创建卷</h1><ul><li><strong>优点：允许你映射指定的宿主机文件夹至容器</strong></li><li><strong>缺点：无法创建和 docker volume create一样的有名卷，无法使用Dockerfile实现自动化</strong><br>如果你想把宿主机上一个特定的文件夹挂载为容器上的Docker卷，使用以下docker run的参数指定文件夹路径:挂载点路径：<pre class=" language-option"><code class="language-option">-v [host directory]:[container directory]</code></pre></li></ul><h1 id="4-使用Dockerfile创建卷"><a href="#4-使用Dockerfile创建卷" class="headerlink" title="4. 使用Dockerfile创建卷"></a>4. 使用Dockerfile创建卷</h1><ul><li><strong>优点：允许自动化进程</strong></li><li><strong>缺点：无法创建和 docker volume create一样的有名卷，无法指定需要挂载的文件夹</strong><pre class=" language-dockerfile"><code class="language-dockerfile">VOLUME [volume path]</code></pre><h1 id="5-在容器间共享卷"><a href="#5-在容器间共享卷" class="headerlink" title="5. 在容器间共享卷"></a>5. 在容器间共享卷</h1>有很多场景需在容器之间共享卷，有多个方法可以实现它</li></ul><h1 id="5-1-通过共享一个宿主机上的卷"><a href="#5-1-通过共享一个宿主机上的卷" class="headerlink" title="5.1. 通过共享一个宿主机上的卷"></a>5.1. 通过共享一个宿主机上的卷</h1><p>如果你在宿主机上创建了卷，那么他可以被不同的容器同时使用，它也只能被容器进程所访问</p><pre class=" language-option"><code class="language-option"> -v [host directory]:[container directory]</code></pre><h1 id="5-2-通过使用容器作为共享存储卷"><a href="#5-2-通过使用容器作为共享存储卷" class="headerlink" title="5.2. 通过使用容器作为共享存储卷"></a>5.2. 通过使用容器作为共享存储卷</h1><p>我们还可以将单独的容器设置为共享数据卷。</p><p>为此，首先需要创建一个容器作为数据容器。 然后，当您需要创建一个使用该数据容器的容器时，将以下参数添加到<code>docker run</code>命令中：</p><pre class=" language-option"><code class="language-option">--volumes-from [name or ID of data container]</code></pre><p>不管这个数据容器是否运行，这个挂载始终可用，容器停止后Docker卷不会被删除</p><h1 id="6-只读挂载一个卷"><a href="#6-只读挂载一个卷" class="headerlink" title="6. 只读挂载一个卷"></a>6. 只读挂载一个卷</h1><p>只需在-v参数最后添加:ro</p><pre class=" language-bash"><code class="language-bash"> docker run -v /directory:/path:ro</code></pre>]]></content>
       
@@ -148,8 +148,8 @@
     
     <entry>
       <title>Docker架构和三大核心</title>
-      <link href="/raph-hsyuan.github.io/2020/05/15/docker-jia-gou-he-san-da-he-xin/"/>
-      <url>/raph-hsyuan.github.io/2020/05/15/docker-jia-gou-he-san-da-he-xin/</url>
+      <link href="/2020/05/15/docker-jia-gou-he-san-da-he-xin/"/>
+      <url>/2020/05/15/docker-jia-gou-he-san-da-he-xin/</url>
       
         <content type="html"><![CDATA[<h1 id="0-背景"><a href="#0-背景" class="headerlink" title="0.背景"></a>0.背景</h1><p>Docker 容器管理工具于2013/3以Apache2.0开源，使用Golang进行实现，基于 Linux 内核的 cgroup 和 namespace 以及 AUFS 类的 UnionFS 等技术。Docker对进程进行封装隔离，属于操作系统层面的虚拟化技术，最初的实现基于LXC，后转用 libcontainer，1.11后改用 runC 和 containerd。前两年 Docker 公司将该开源项目重命名为Moby，而 Docker 这个名字则变为了该公司名下的一个商业产品名字，其包括了 Docker EE 和 Docker CE 两个主要产品，其中 Docker CE 为 Moby 开源社区开发者共同维护。</p><h1 id="1-Docker-三大核心-Namespace-Cgroup-UnionFS"><a href="#1-Docker-三大核心-Namespace-Cgroup-UnionFS" class="headerlink" title="1. Docker 三大核心 : Namespace + Cgroup + UnionFS"></a>1. Docker 三大核心 : Namespace + Cgroup + UnionFS</h1><h2 id="1-1-Namespace"><a href="#1-1-Namespace" class="headerlink" title="1.1. Namespace"></a>1.1. Namespace</h2><p><strong>Namespace</strong> 命名空间为 Linux 内核的一个功能，它<strong>将内核资源按规则进行分区，使得不同的进程所访问的相应资源互相独立，互不干涉，简单的说就是访问隔离</strong>。<code>注* 内核4.10版本后一共有7种命名空间分别为</code>:</p><ul><li><strong>Cgroup</strong> 隔离 Cgroup 根目录</li><li><strong>IPC</strong> 隔离进程间通信资源</li><li><strong>Network</strong> 隔离网络接口</li><li><strong>Mount</strong> 隔离文件系统挂载点</li><li><strong>PID</strong> 隔离 PID 编号空间</li><li><strong>User</strong> 隔离 UID/GID 编号空间</li><li><strong>UTS</strong> 隔离主机名和域名</li></ul><h2 id="1-2-Cgroup"><a href="#1-2-Cgroup" class="headerlink" title="1.2. Cgroup"></a>1.2. Cgroup</h2><p><strong>Cgroup</strong> Control Group 也是 Linux 内核提供的一种机制，<strong>将多个进程划分到不同的组内，再分别对组进行访问资源的控制和追踪，同时也可以分配优先级以及任务控制。</strong></p><h2 id="1-3-UnionFS"><a href="#1-3-UnionFS" class="headerlink" title="1.3. UnionFS"></a>1.3. UnionFS</h2><p><strong>UnionFS</strong> Union File System 联合文件系统 可以<strong>把多个不同物理位置的目录内容挂在到一个目录下，其次它允许只读和可读写目录并存</strong>，同时利用 Copy-on-write 功能将对只读文件系统的修改内容保存到可读写目录中。 我们知道挂载 rootfs 是 linux 操作系统启动时的一个重要环节，首先会挂载一个只读 rootfs 再经过完整性检测后会决定是否切换到读写模式，而 Docker 在挂载只读 rootfs 后直接利用 UnionFS 技术在只读 rootfs 上再挂载一个读写文件系统。这是一种考虑资源共享的设计，新镜像由一个只读 base 镜像叠加一个个新的逻辑层构成，base 镜像可以是多个 docker 共享的，举例说 base 可以是 ubuntu，而叠加的逻辑层可以是 Apache, openssl … 由此，创建多个不同业务的 docker 时无需反复复制 base 镜像，可以节约大量磁盘空间。</p><h1 id="2-Docker-架构-Linux-amp-Windows-amp-MacOS"><a href="#2-Docker-架构-Linux-amp-Windows-amp-MacOS" class="headerlink" title="2. Docker 架构 Linux &amp; Windows &amp; MacOS"></a>2. Docker 架构 Linux &amp; Windows &amp; MacOS</h1><h2 id="2-1-Docker-于-Linux-操作系统"><a href="#2-1-Docker-于-Linux-操作系统" class="headerlink" title="2.1. Docker 于 Linux 操作系统"></a>2.1. Docker 于 Linux 操作系统</h2><p><img src="/images/docker-on-linux-768x524.png" alt="Docker on Linux"><br>Docker 作为容器管理工具，如上图所示，在Linux系统中直接通过调用以下两个工具来实现容器的管理和创建:</p><ul><li><code>runc</code> （一个Linux 的命令行工具，用于创建和运行容器，他根据开放容器计划OCI规范实现）</li><li><code>containerd</code>（一个守护程序daemon, 他可以管理容器的生命周期：从最开始的下载、解包容器的映像文件，到容器的运行和监控）</li></ul><h2 id="2-2-Docker-于-Windows-操作系统"><a href="#2-2-Docker-于-Windows-操作系统" class="headerlink" title="2.2. Docker 于 Windows 操作系统"></a>2.2. Docker 于 Windows 操作系统</h2><p><img src="/images/hcs-768x539.png" alt="Docker on Windows"><br>在 Windows 上，Docker 采用了不同的方法，当前版本它直接调用 Windows 的 HCS <em>( Host Compute Service 待整理 )</em> ，以后容器管理工具会得到扩展以直接支持 Windows 容器，那时候可以像调用 Linux 上<code>containerd</code> 和 <code>runc</code> 一样调用 <code>containerd</code> 和 <code>runhcs</code>。</p><ul><li><code>runhcs</code> 它是 runc 的一个分支，作用与 runc 一致，<strong>但它是通过 HCS 来创建和管理容器</strong>，且可以支持多种容器种类 :<ul><li>Process isolation 进程隔离，多个容器实例在同一个主机上同时运行，通过 namespace 命名空间，resource control 资源管控和进程隔离技术实现互相隔离。<strong>！在此模式下，所有容器会和主机共享内核，这种模式和 Linux 下容器运行方法几乎相同。</strong><img src="/images/container-arch-process-768x213.png" alt=""></li><li>Hyper-V isolation Hyper-V 隔离，是一种增强安全性能，增强不同版本容器主机的兼容性能的模式。该模式下，多个容器实例同时运行在一个主机上，<strong>然而每个容器都会各自在一个高度优化的虚拟机中运行，它们各自有独立的内核。</strong>虚拟机的使用为主机和所有容器提供了硬件层上的隔离。<img src="/images/container-arch-hyperv-768x213.png" alt=""></li></ul></li></ul><h2 id="2-3-Docker-于-MacOS"><a href="#2-3-Docker-于-MacOS" class="headerlink" title="2.3. Docker 于 MacOS"></a>2.3. Docker 于 MacOS</h2><p>Docker 所依赖的Linux内核功能，目前在MacOS上（2019/10）还不能被替代，于是使用了xhyve 虚拟机运行一个简化的 Linux，这导致其性能不进人如意。</p><ul><li><a href="https://github.com/moby/moby" target="_blank" rel="noopener">Moby : Moby</a></li><li><a href="https://github.com/yeasy/docker_practice" target="_blank" rel="noopener">Yeasy : Docker_practic</a></li><li><a href="https://docs.microsoft.com/fr-fr/virtualization/windowscontainers/deploy-containers/containerd" target="_blank" rel="noopener">Container platform tools on Windows</a></li><li><a href="https://techcommunity.microsoft.com/t5/containers/introducing-the-host-compute-service-hcs/ba-p/382332" target="_blank" rel="noopener">Introducing the Host Compute Service (HCS)</a></li></ul>]]></content>
       
