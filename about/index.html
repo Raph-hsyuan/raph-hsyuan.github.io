@@ -460,7 +460,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"学习笔记","value":2},{"name":"项目","value":4}],
+                data: [{"name":"项目","value":4},{"name":"学习笔记","value":2}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -484,7 +484,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Docker","Https","go","反向代理","Openvpn","iptables","Certbot"]
+                data: ["Https","Docker","go","反向代理","Openvpn","iptables","Certbot"]
             }
         ],
         yAxis: [
@@ -637,12 +637,6 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/raph-hsyuan.github.io/tags/Docker/">
-                <span class="chip center-align waves-effect waves-light chip-default">Docker</span>
-            </a>
-            
-            
-            
             <a href="/raph-hsyuan.github.io/tags/go/">
                 <span class="chip center-align waves-effect waves-light chip-default">go</span>
             </a>
@@ -651,6 +645,18 @@
             
             <a href="/raph-hsyuan.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">
                 <span class="chip center-align waves-effect waves-light chip-default">反向代理</span>
+            </a>
+            
+            
+            
+            <a href="/raph-hsyuan.github.io/tags/Https/">
+                <span class="chip center-align waves-effect waves-light chip-default">Https</span>
+            </a>
+            
+            
+            
+            <a href="/raph-hsyuan.github.io/tags/Docker/">
+                <span class="chip center-align waves-effect waves-light chip-default">Docker</span>
             </a>
             
             
@@ -669,12 +675,6 @@
             
             <a href="/raph-hsyuan.github.io/tags/Certbot/">
                 <span class="chip center-align waves-effect waves-light chip-default">Certbot</span>
-            </a>
-            
-            
-            
-            <a href="/raph-hsyuan.github.io/tags/Https/">
-                <span class="chip center-align waves-effect waves-light chip-default">Https</span>
             </a>
             
             
@@ -843,8 +843,7 @@ $(function () {
     <!-- 回到顶部按钮 -->
 
 <div id="backTop" class="top-scroll">
-    <img src="https://blog.huangshenyuan.com/images/backtop/1.gif" id="backTopAnime1" style="display: none;"/>
-    <img src="https://blog.huangshenyuan.com/images/backtop/2.gif" id="backTopAnime2" style="display: none;"/>
+    <img src="" id="backTopAnime" style="display: none;"/>
 
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
         <i class="fas fa-arrow-up"></i>

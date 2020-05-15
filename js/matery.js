@@ -121,12 +121,24 @@ $(function () {
     /*回到顶部*/
     $('#backTop').click(function () {
         id=Math.round(Math.random()*1)+1
-        document.getElementById("backTopAnime"+id).style.display = "inline-block";
+        url=getRealPath()
+        $("#backTopAnime").attr('src',url+'/images/backtop/'+id+'.gif')
+        document.getElementById("backTopAnime").style.display = "inline-block";
         setTimeout(()=>{$('body,html').animate({scrollTop: 0}, 200)},400);
-        setTimeout(()=>{document.getElementById("backTopAnime"+id).style.display = "none"},800);
+        setTimeout(()=>{document.getElementById("backTopAnime").style.display = "none"},800);
 
         return false;
     });
+
+    function getRealPath(){
+        var curWwwPath=window.document.location.href;
+        var pathName=window.document.location.pathname;      
+        var pos=curWwwPath.indexOf(pathName);            
+        var localhostPaht=curWwwPath.substring(0,pos);           
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);      
+        var realPath=localhostPaht+projectName;      
+        return realPath
+    }
 
     /*监听滚动条位置*/
     let $nav = $('#headNav');
